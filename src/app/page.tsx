@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import ExpertiseCard from "./components/ExpertiseCard";
 import TerminalSkills from "./components/TerminalSkills";
+import ProjectVideoCard from "./components/ProjectVideoCard";
 import { 
   animateFadeUp, 
   animateFromLeft, 
@@ -26,7 +27,8 @@ export default function Home() {
             variants={animateFromLeft}
             custom={0.2}
             initial="offscreen"
-            animate="onscreen"
+            whileInView="onscreen"
+            viewport={{ once: false }}
           >
             <div className="inline-block px-4 py-1 rounded-full bg-accent/10 border border-accent/20 text-accent text-xs font-bold mb-6 tracking-widest uppercase">
               BBC Affiliated Journalist
@@ -51,7 +53,8 @@ export default function Home() {
             variants={animateFromRight}
             custom={0.4}
             initial="offscreen"
-            animate="onscreen"
+            whileInView="onscreen"
+            viewport={{ once: false }}
             className="relative w-full max-w-sm mx-auto md:ml-auto"
           >
             <div className="relative w-full aspect-square rounded-3xl overflow-hidden glass p-3">
@@ -68,6 +71,67 @@ export default function Home() {
             {/* Decorative elements */}
             <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-accent/20 blur-3xl rounded-full animate-pulse" />
             <div className="absolute -top-6 -right-6 w-32 h-32 bg-accent/10 blur-3xl rounded-full" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Partners / Trusted By Section - Revamped with Infinite Scroll */}
+      <section className="py-20 border-y border-white/5 relative overflow-hidden bg-white/[0.01]">
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <div className="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-background to-transparent z-10" />
+          <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-background to-transparent z-10" />
+        </div>
+
+        <div className="container mx-auto px-6 mb-16 text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false }}
+          >
+            <h2 className="text-3xl md:text-5xl font-bold mb-4 tracking-tighter">Strategic <span className="text-accent">Partners.</span></h2>
+            <p className="text-foreground/60 max-w-lg mx-auto">Global organizations and industry leaders I've had the privilege to work with.</p>
+          </motion.div>
+        </div>
+
+        <div className="relative flex overflow-hidden py-10">
+          <motion.div
+            animate={{ x: ["0%", "-50%"] }}
+            transition={{ 
+              duration: 35, 
+              repeat: Infinity, 
+              ease: "linear" 
+            }}
+            className="flex whitespace-nowrap gap-8 items-center px-8 py-4"
+          >
+            {/* Duplicate the array to create the infinite loop effect */}
+            {[...Array(2)].map((_, idx) => (
+              <React.Fragment key={idx}>
+                {[
+                  { name: "BBC", logo: "/sponsors/BBC.png", scale: "scale-150" },
+                  { name: "Sahel Consulting", logo: "/sponsors/Sahel Consuling.webp", scale: "scale-125" },
+                  { name: "Mitimeth", logo: "/sponsors/Mitimeth.png", scale: "scale-100" },
+                  { name: "Proxylogics", logo: "/sponsors/Proxylogics.png", scale: "scale-100" },
+                  { name: "XEM Consulting", logo: "/sponsors/XEM Consulting.webp", scale: "scale-100" },
+                  { name: "MG Vow Gas", logo: "/sponsors/MG Vow Gas.png", scale: "scale-75" }
+                ].map((partner, pIdx) => (
+                  <div 
+                    key={`${idx}-${pIdx}`} 
+                    className="flex flex-col items-center gap-4"
+                  >
+                    <div className="group relative flex items-center justify-center h-24 w-48 bg-white rounded-xl shadow-xl hover:shadow-white/5 transition-all duration-500 hover:-translate-y-2">
+                      <Image
+                        src={partner.logo}
+                        alt={`${partner.name} Logo`}
+                        width={180}
+                        height={90}
+                        className={`max-h-[80%] w-auto object-contain transition-transform duration-500 ${partner.scale}`}
+                      />
+                    </div>
+                    <span className="text-white/60 font-medium text-xs uppercase tracking-[0.2em]">{partner.name}</span>
+                  </div>
+                ))}
+              </React.Fragment>
+            ))}
           </motion.div>
         </div>
       </section>
@@ -200,7 +264,7 @@ export default function Home() {
                   delay: i * 0.1,
                   ease: [0.25, 0.1, 0.25, 1],
                 }}
-                viewport={{ once: false, amount: 0.1 }}
+                viewport={{ once: true, amount: 0.1 }}
                 className="w-full glass p-8 rounded-3xl border-l-4 border-accent group cursor-pointer hover:bg-white/5 transition-all"
               >
                 <div className="flex justify-between items-start mb-6">
@@ -217,6 +281,63 @@ export default function Home() {
                   Watch Project <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
                 </div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Expanded Projects Section */}
+      <section id="projects" className="py-24 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Project <span className="text-accent">Archives.</span></h2>
+            <p className="text-foreground/60 max-w-2xl mx-auto">A visual journey through my latest documentaries, music tutorials, and agropreneurial insights.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {[
+              {
+                title: "ALDDN - AI Documentary",
+                youtubeId: "F5RkwsYEtnY",
+                description: "Digitalizing Nigerian livelihoods through data-driven innovation and economic empowerment."
+              },
+              {
+                title: "MitiMeth Artisan Enterprise",
+                youtubeId: "7vZsaNT_JF0",
+                description: "Transforming invasive aquatic weeds into handcrafted home décor and sustainable community wealth."
+              },
+              {
+                title: "Cassava Value Chain",
+                youtubeId: "-2OjR-pGCYs",
+                description: "Revolutionizing food security by bridging the gap in processing and exports for Nigeria's largest crop."
+              },
+              {
+                title: "The Adamawa Shoemaker",
+                youtubeId: "g8y9ikflB5M",
+                description: "Empowering thousands of youth in North Eastern Nigeria through vocational mastery and financial resilience."
+              },
+              {
+                title: "The Blind Mechanic",
+                youtubeId: "ATckDsKm7o8",
+                description: "A testament to human resilience: Murtala Shuaibu's extraordinary mechanical journey in Abuja."
+              },
+              {
+                title: "Eco-Friendly Innovation",
+                youtubeId: "8kfA9m0BbzI",
+                description: "Turning scrap tyres into durable flooring, addressing environmental waste with entrepreneurial grit."
+              }
+            ].map((project, i) => (
+              <ProjectVideoCard 
+                key={i}
+                title={project.title}
+                youtubeId={project.youtubeId}
+                description={project.description}
+              />
             ))}
           </div>
         </div>

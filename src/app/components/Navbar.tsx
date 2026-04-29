@@ -36,6 +36,7 @@ const Navbar = () => {
       <div className="hidden md:flex items-center space-x-8">
         <div className="flex space-x-8 text-sm font-medium">
           <a href="#about" className="hover:text-accent transition-colors">About</a>
+          <a href="#projects" className="hover:text-accent transition-colors">Projects</a>
           <a href="#expertise" className="hover:text-accent transition-colors">Expertise</a>
           <a href="#contact" className="hover:text-accent transition-colors">Contact</a>
         </div>
@@ -62,6 +63,7 @@ const Navbar = () => {
           >
             <div className="flex flex-col space-y-4">
               <a href="#about" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-accent">About</a>
+              <a href="#projects" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-accent">Projects</a>
               <a href="#expertise" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-accent">Expertise</a>
               <a href="#contact" onClick={() => setIsOpen(false)} className="text-lg font-medium hover:text-accent">Contact</a>
             </div>
