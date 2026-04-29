@@ -77,11 +77,6 @@ export default function Home() {
 
       {/* Partners / Trusted By Section - Revamped with Infinite Scroll */}
       <section className="py-20 border-y border-white/5 relative overflow-hidden bg-white/[0.01]">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <div className="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-background to-transparent z-10" />
-          <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-background to-transparent z-10" />
-        </div>
-
         <div className="container mx-auto px-6 mb-16 text-center">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -94,6 +89,12 @@ export default function Home() {
         </div>
 
         <div className="relative flex overflow-hidden py-10">
+          {/* Gradient Masks - Moved here to only affect the carousel */}
+          <div className="absolute inset-0 z-10 pointer-events-none">
+            <div className="absolute top-0 left-0 w-1/4 h-full bg-gradient-to-r from-background to-transparent" />
+            <div className="absolute top-0 right-0 w-1/4 h-full bg-gradient-to-l from-background to-transparent" />
+          </div>
+
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ 
@@ -227,6 +228,63 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Expanded Projects Section */}
+      <section id="projects" className="py-24 border-t border-white/5">
+        <div className="container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Project <span className="text-accent">Archives.</span></h2>
+            <p className="text-foreground/60 max-w-2xl mx-auto">A visual journey through my latest documentaries, music tutorials, and agropreneurial insights.</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {[
+              {
+                title: "ALDDN - AI Documentary",
+                youtubeId: "F5RkwsYEtnY",
+                description: "Digitalizing Nigerian livelihoods through data-driven innovation and economic empowerment."
+              },
+              {
+                title: "MitiMeth Artisan Enterprise",
+                youtubeId: "7vZsaNT_JF0",
+                description: "Transforming invasive aquatic weeds into handcrafted home décor and sustainable community wealth."
+              },
+              {
+                title: "Cassava Value Chain",
+                youtubeId: "-2OjR-pGCYs",
+                description: "Revolutionizing food security by bridging the gap in processing and exports for Nigeria's largest crop."
+              },
+              {
+                title: "The Adamawa Shoemaker",
+                youtubeId: "g8y9ikflB5M",
+                description: "Empowering thousands of youth in North Eastern Nigeria through vocational mastery and financial resilience."
+              },
+              {
+                title: "The Blind Mechanic",
+                youtubeId: "ATckDsKm7o8",
+                description: "A testament to human resilience: Murtala Shuaibu's extraordinary mechanical journey in Abuja."
+              },
+              {
+                title: "Eco-Friendly Innovation",
+                youtubeId: "8kfA9m0BbzI",
+                description: "Turning scrap tyres into durable flooring, addressing environmental waste with entrepreneurial grit."
+              }
+            ].map((project, i) => (
+              <ProjectVideoCard 
+                key={i}
+                title={project.title}
+                youtubeId={project.youtubeId}
+                description={project.description}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Featured BBC Work */}
       <section className="py-24 overflow-hidden bg-secondary/5">
         <div className="container mx-auto px-6">
@@ -286,58 +344,54 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Expanded Projects Section */}
-      <section id="projects" className="py-24 border-t border-white/5">
+      {/* Gallery Section */}
+      <section id="gallery" className="py-24 bg-white/[0.01]">
         <div className="container mx-auto px-6">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            viewport={{ once: false }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Project <span className="text-accent">Archives.</span></h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">A visual journey through my latest documentaries, music tutorials, and agropreneurial insights.</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Visual <span className="text-accent">Gallery.</span></h2>
+            <p className="text-foreground/60 max-w-2xl mx-auto">Behind the scenes and captured moments from various professional engagements and field work.</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
             {[
-              {
-                title: "ALDDN - AI Documentary",
-                youtubeId: "F5RkwsYEtnY",
-                description: "Digitalizing Nigerian livelihoods through data-driven innovation and economic empowerment."
-              },
-              {
-                title: "MitiMeth Artisan Enterprise",
-                youtubeId: "7vZsaNT_JF0",
-                description: "Transforming invasive aquatic weeds into handcrafted home décor and sustainable community wealth."
-              },
-              {
-                title: "Cassava Value Chain",
-                youtubeId: "-2OjR-pGCYs",
-                description: "Revolutionizing food security by bridging the gap in processing and exports for Nigeria's largest crop."
-              },
-              {
-                title: "The Adamawa Shoemaker",
-                youtubeId: "g8y9ikflB5M",
-                description: "Empowering thousands of youth in North Eastern Nigeria through vocational mastery and financial resilience."
-              },
-              {
-                title: "The Blind Mechanic",
-                youtubeId: "ATckDsKm7o8",
-                description: "A testament to human resilience: Murtala Shuaibu's extraordinary mechanical journey in Abuja."
-              },
-              {
-                title: "Eco-Friendly Innovation",
-                youtubeId: "8kfA9m0BbzI",
-                description: "Turning scrap tyres into durable flooring, addressing environmental waste with entrepreneurial grit."
-              }
-            ].map((project, i) => (
-              <ProjectVideoCard 
+              "/gallery/20240516_141602.jpg.jpeg",
+              "/gallery/20241129_080435.jpg.jpeg",
+              "/gallery/20240518_154016.jpg.jpeg",
+              "/gallery/20241129_080437.jpg.jpeg",
+              "/gallery/3.jpg.jpeg",
+              "/gallery/20241129_080441.jpg.jpeg",
+              "/gallery/IMG_4761.jpg.jpeg",
+              "/gallery/5.jpg.jpeg",
+              "/gallery/20241129_080450.jpg.jpeg",
+              "/gallery/IMG_4890.jpg.jpeg",
+              "/gallery/IMG_5285.jpg.jpeg",
+              "/gallery/Screenshot 2026-04-28 190003.png"
+            ].map((img, i) => (
+              <motion.div
                 key={i}
-                title={project.title}
-                youtubeId={project.youtubeId}
-                description={project.description}
-              />
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, delay: i * 0.05 }}
+                viewport={{ once: true }}
+                className="relative break-inside-avoid rounded-3xl overflow-hidden glass border border-white/5 group"
+              >
+                <Image
+                  src={img}
+                  alt={`Gallery Image ${i + 1}`}
+                  width={800}
+                  height={1000}
+                  className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-6">
+                  <p className="text-white text-sm font-medium tracking-wider">Field Engagement #{i + 1}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
