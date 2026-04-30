@@ -6,9 +6,10 @@ interface ProjectVideoCardProps {
   title: string;
   youtubeId: string;
   description: string;
+  useExternalLink?: boolean;
 }
 
-const ProjectVideoCard = ({ title, youtubeId, description }: ProjectVideoCardProps) => {
+const ProjectVideoCard = ({ title, youtubeId, description, useExternalLink = false }: ProjectVideoCardProps) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -17,13 +18,38 @@ const ProjectVideoCard = ({ title, youtubeId, description }: ProjectVideoCardPro
       className="group relative bg-secondary/20 rounded-3xl overflow-hidden border border-white/5 hover:border-accent/20 transition-all duration-500"
     >
       <div className="aspect-video w-full overflow-hidden relative">
-        <iframe
-          src={`https://www.youtube.com/embed/${youtubeId}`}
-          title={title}
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute inset-0 w-full h-full border-0"
-        />
+        {useExternalLink ? (
+          <a 
+            href={`https://www.youtube.com/watch?v=${youtubeId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block w-full h-full relative group/video"
+          >
+            <img
+              src={`https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`}
+              alt={title}
+              className="w-full h-full object-cover transition-transform duration-500 group-hover/video:scale-110"
+            />
+            <div className="absolute inset-0 bg-black/40 flex items-center justify-center group-hover/video:bg-black/20 transition-colors">
+              <div className="w-16 h-16 rounded-full bg-accent flex items-center justify-center text-background transform group-hover/video:scale-110 transition-transform">
+                <svg viewBox="0 0 24 24" className="w-8 h-8 fill-current">
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </div>
+            <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-md p-2 rounded-lg text-white text-xs font-bold text-center border border-white/10">
+              Watch on YouTube (Embed Disabled)
+            </div>
+          </a>
+        ) : (
+          <iframe
+            src={`https://www.youtube.com/embed/${youtubeId}`}
+            title={title}
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full border-0"
+          />
+        )}
       </div>
       <div className="p-6">
         <div className="flex justify-between items-start mb-2">

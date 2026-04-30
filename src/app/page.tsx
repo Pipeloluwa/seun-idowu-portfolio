@@ -348,6 +348,7 @@ export default function Home() {
                 title={project.title}
                 youtubeId={project.youtubeId}
                 description={project.description}
+                useExternalLink={project.title === "CCK Entertainment"}
               />
             ))}
           </div>
@@ -404,9 +405,7 @@ export default function Home() {
                 <p className="text-foreground/70 leading-relaxed">
                   {project.desc}
                 </p>
-                <div className="mt-8 flex items-center text-accent font-bold text-sm uppercase tracking-widest">
-                  Watch Project <span className="ml-2 group-hover:translate-x-2 transition-transform">→</span>
-                </div>
+
               </motion.div>
             ))}
           </div>
