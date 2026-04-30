@@ -37,7 +37,7 @@ export default function Home() {
               Telling Stories That <span className="text-gradient">Matter.</span>
             </h1>
             <p className="text-lg text-foreground/70 mb-8 max-w-md leading-relaxed">
-              Award-winning Journalist, Documentary Filmmaker, and Agropreneur. Dedicated to impactful storytelling across global platforms.
+              Award-winning Journalist, Documentary Filmmaker, and Agropreneur with over 20 years of experience. Dedicated to impactful storytelling across global platforms.
             </p>
             <div className="flex gap-3 mt-8 max-w-sm">
               <a href="#about" className="flex-1 text-center bg-accent text-background px-4 py-3 rounded-full font-bold hover:scale-105 transition-transform text-sm md:text-base">
@@ -109,6 +109,8 @@ export default function Home() {
               <React.Fragment key={idx}>
                 {[
                   { name: "BBC", logo: "/sponsors/BBC.png", scale: "scale-150" },
+                  { name: "Kucheza Gaming", logo: "/sponsors/Kucheza Gaming.png", scale: "scale-110" },
+                  { name: "CCK Entertainment", logo: "text-CCK", scale: "scale-100" },
                   { name: "Sahel Consulting", logo: "/sponsors/Sahel Consuling.webp", scale: "scale-125" },
                   { name: "Mitimeth", logo: "/sponsors/Mitimeth.png", scale: "scale-100" },
                   { name: "Proxylogics", logo: "/sponsors/Proxylogics.png", scale: "scale-100" },
@@ -120,13 +122,17 @@ export default function Home() {
                     className="flex flex-col items-center gap-4"
                   >
                     <div className="group relative flex items-center justify-center h-24 w-48 bg-white rounded-xl shadow-xl hover:shadow-white/5 transition-all duration-500 hover:-translate-y-2">
-                      <Image
-                        src={partner.logo}
-                        alt={`${partner.name} Logo`}
-                        width={180}
-                        height={90}
-                        className={`max-h-[80%] w-auto object-contain transition-transform duration-500 ${partner.scale}`}
-                      />
+                      {partner.logo === "text-CCK" ? (
+                        <span className="text-black font-black text-2xl italic tracking-tighter">CCK <span className="text-accent">ENT.</span></span>
+                      ) : (
+                        <Image
+                          src={partner.logo}
+                          alt={`${partner.name} Logo`}
+                          width={180}
+                          height={90}
+                          className={`max-h-[80%] w-auto object-contain transition-transform duration-500 ${partner.scale}`}
+                        />
+                      )}
                     </div>
                     <span className="text-white/60 font-medium text-xs uppercase tracking-[0.2em]">{partner.name}</span>
                   </div>
@@ -159,20 +165,20 @@ export default function Home() {
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
               <div className="p-6 glass rounded-2xl">
-                <div className="text-4xl font-bold text-accent mb-2">5+</div>
+                <div className="text-4xl font-bold text-accent mb-2">20+</div>
                 <div className="text-xs text-foreground/40 uppercase tracking-widest">Years Experience</div>
               </div>
               <div className="p-6 glass rounded-2xl">
-                <div className="text-4xl font-bold text-accent mb-2">100+</div>
-                <div className="text-xs text-foreground/40 uppercase tracking-widest">Documentaries</div>
+                <div className="text-4xl font-bold text-accent mb-2">350+</div>
+                <div className="text-xs text-foreground/40 uppercase tracking-widest">Stories Filmed</div>
               </div>
               <div className="p-6 glass rounded-2xl">
                 <div className="text-4xl font-bold text-accent mb-2">BBC</div>
-                <div className="text-xs text-foreground/40 uppercase tracking-widest">Global Partner</div>
+                <div className="text-xs text-foreground/40 uppercase tracking-widest">Lead Researcher</div>
               </div>
-              <div className="p-6 glass rounded-2xl">
-                <div className="text-4xl font-bold text-accent mb-2">Lagos</div>
-                <div className="text-xs text-foreground/40 uppercase tracking-widest">Nigeria Base</div>
+              <div className="p-6 glass rounded-2xl flex flex-col justify-center">
+                <div className="text-xl font-bold text-accent mb-1 leading-tight">9 Major Hubs</div>
+                <div className="text-[10px] text-foreground/40 uppercase tracking-widest leading-tight">Lagos, Abuja, Kano +</div>
               </div>
             </div>
           </motion.div>
@@ -190,22 +196,34 @@ export default function Home() {
           <div className="max-w-4xl mx-auto space-y-6 md:space-y-12">
             {[
               {
-                year: "2020 - Present",
-                title: "Journalist & Documentarian",
-                company: "BBC World Service",
-                desc: "Producing high-impact documentaries and news reports focused on West African socio-economic issues."
-              },
-              {
                 year: "2018 - Present",
-                title: "Founder & Lead Consultant",
-                company: "AgroGrowth Ventures",
-                desc: "Pioneering sustainable agricultural practices and consulting for emerging agropreneurs in Nigeria."
+                title: "Journalism Researcher",
+                company: "BBC Africa / Channels TV Partnership",
+                desc: "Lead researcher for 'Gist Nigeria'. Pitching stories, conducting interviews with 300+ contributors, and producing high-impact TV/digital packages."
               },
               {
-                year: "2015 - Present",
-                title: "Professional Musician & Tutor",
-                company: "Independent",
-                desc: "Mentoring over 200+ students in classical and contemporary piano while performing globally."
+                year: "2012 - 2018",
+                title: "Regional Researcher",
+                company: "Television Continental (TVC) News",
+                desc: "Coordinating news gathering across Sub-Saharan Africa. Mentoring interns and sustaining partnerships with Reuters, AFP, and AP."
+              },
+              {
+                year: "2011 - 2012",
+                title: "Freelance Project Manager",
+                company: "Repertoire Productions",
+                desc: "Driving grassroots awareness through science and tech reporting in indigenous languages (Yoruba)."
+              },
+              {
+                year: "2010 - 2011",
+                title: "Programmes Producer (NYSC)",
+                company: "Niger State Broadcasting Corporation",
+                desc: "Anchoring and producing radio programmes during the National Youth Service year."
+              },
+              {
+                year: "2006 - 2007",
+                title: "Freelance Radio Broadcaster",
+                company: "Osun State Broadcasting Corp (OSBC)",
+                desc: "Story research, translation, and presentation. Composing songs for jingles and managing media sponsorships."
               }
             ].map((exp, i) => (
               <motion.div
@@ -228,6 +246,57 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Education & Professional Memberships */}
+      <section className="py-24 bg-secondary/10">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 gap-16">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+            >
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">Academic <span className="text-accent">Foundation.</span></h2>
+              <div className="space-y-8">
+                <div className="glass p-6 rounded-2xl border-l-4 border-accent">
+                  <h3 className="text-xl font-bold mb-2">Master of Arts in Communication and Language Arts</h3>
+                  <p className="text-accent/60 mb-2">University of Ibadan, Nigeria</p>
+                  <p className="text-sm text-foreground/70">Specialized in Market Intelligence, Media Production Management, and Communication Strategies.</p>
+                </div>
+                <div className="glass p-6 rounded-2xl border-l-4 border-accent">
+                  <h3 className="text-xl font-bold mb-2">Bachelor of Arts in Music</h3>
+                  <p className="text-accent/60 mb-2">Obafemi Awolowo University, Ile-Ife, Nigeria</p>
+                  <p className="text-sm text-foreground/70">Focused on African Music and the role of music in public awareness creation.</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: false }}
+            >
+              <h2 className="text-3xl md:text-5xl font-bold mb-8 tracking-tighter">Professional <span className="text-accent">Network.</span></h2>
+              <div className="space-y-6">
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 text-accent text-2xl font-bold">L</div>
+                  <div>
+                    <h3 className="text-lg font-bold">Lagos Journalists’ League</h3>
+                    <p className="text-sm text-foreground/60 leading-relaxed">Collaborating with over 200+ journalists across Nigeria to analyze burning issues and deliver objective news.</p>
+                  </div>
+                </div>
+                <div className="flex gap-4 items-start">
+                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center shrink-0 text-accent text-2xl font-bold">A</div>
+                  <div>
+                    <h3 className="text-lg font-bold">Afro Nexus</h3>
+                    <p className="text-sm text-foreground/60 leading-relaxed">A Pan-African journalists’ group focused on cross-border collaboration and socio-political insights across Sub-Saharan Africa.</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Expanded Projects Section */}
       <section id="projects" className="py-24 border-t border-white/5">
         <div className="container mx-auto px-6">
@@ -237,8 +306,8 @@ export default function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Project <span className="text-accent">Archives.</span></h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">A visual journey through my latest documentaries, music tutorials, and agropreneurial insights.</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">BBC <span className="text-accent">Reports.</span></h2>
+            <p className="text-foreground/60 max-w-2xl mx-auto">A selection of my 350+ stories, interviews, and documentaries produced for Gist Nigeria and BBC Africa.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
@@ -269,9 +338,9 @@ export default function Home() {
                 description: "A testament to human resilience: Murtala Shuaibu's extraordinary mechanical journey in Abuja."
               },
               {
-                title: "Eco-Friendly Innovation",
-                youtubeId: "8kfA9m0BbzI",
-                description: "Turning scrap tyres into durable flooring, addressing environmental waste with entrepreneurial grit."
+                title: "CCK Entertainment",
+                youtubeId: "jNDG2vvyeYw",
+                description: "Showcasing creative excellence and media production for CCK Entertainment Ltd."
               }
             ].map((project, i) => (
               <ProjectVideoCard 
@@ -294,8 +363,8 @@ export default function Home() {
             viewport={{ once: false }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Featured <span className="text-accent">BBC Work.</span></h2>
-            <p className="text-foreground/60 max-w-2xl mx-auto">Selected documentary and journalism projects that have reached millions worldwide.</p>
+            <h2 className="text-4xl md:text-6xl font-bold mb-4 tracking-tighter">Gist Nigeria <span className="text-accent">Highlights.</span></h2>
+            <p className="text-foreground/60 max-w-2xl mx-auto">Special reports and documentaries from the BBC & Channels TV co-production.</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-12 justify-items-center max-w-6xl mx-auto">

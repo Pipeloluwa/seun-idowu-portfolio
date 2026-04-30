@@ -26,9 +26,19 @@ const ProjectVideoCard = ({ title, youtubeId, description }: ProjectVideoCardPro
         />
       </div>
       <div className="p-6">
-        <h3 className="text-xl font-bold mb-2 group-hover:text-accent transition-colors">
-          {title}
-        </h3>
+        <div className="flex justify-between items-start mb-2">
+          <h3 className="text-xl font-bold group-hover:text-accent transition-colors">
+            {title}
+          </h3>
+          <a 
+            href={`https://www.youtube.com/watch?v=${youtubeId}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-accent hover:text-white transition-colors text-sm font-bold uppercase tracking-widest whitespace-nowrap ml-4"
+          >
+            Watch ↗
+          </a>
+        </div>
         <p className="text-foreground/60 text-sm leading-relaxed line-clamp-2 italic">
           {description}
         </p>
