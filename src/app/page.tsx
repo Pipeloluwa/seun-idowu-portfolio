@@ -181,6 +181,17 @@ export default function Home() {
                 <div className="text-xs text-foreground/40 uppercase tracking-widest">Major Hubs</div>
               </div>
             </div>
+
+            <div className="mt-16 pt-12 border-t border-white/5">
+              <h3 className="text-sm font-bold uppercase tracking-[0.3em] text-foreground/40 mb-8">Strategic Professional Bases</h3>
+              <div className="flex flex-wrap justify-center gap-3">
+                {["Lagos", "Abuja", "Uyo", "Port Harcourt", "Kano", "Yola", "Sokoto", "Kaduna", "Akure"].map((city) => (
+                  <span key={city} className="px-4 py-2 glass rounded-full text-sm font-medium text-foreground/70 border border-white/5 hover:border-accent/30 hover:text-accent transition-all cursor-default">
+                    {city}
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
