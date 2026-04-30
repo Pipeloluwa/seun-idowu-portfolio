@@ -176,9 +176,9 @@ export default function Home() {
                 <div className="text-4xl font-bold text-accent mb-2">BBC</div>
                 <div className="text-xs text-foreground/40 uppercase tracking-widest">Lead Researcher</div>
               </div>
-              <div className="p-6 glass rounded-2xl flex flex-col justify-center">
-                <div className="text-xl font-bold text-accent mb-1 leading-tight">9 Major Hubs</div>
-                <div className="text-[10px] text-foreground/40 uppercase tracking-widest leading-tight">Lagos, Abuja, Kano +</div>
+              <div className="p-6 glass rounded-2xl">
+                <div className="text-4xl font-bold text-accent mb-2">9</div>
+                <div className="text-xs text-foreground/40 uppercase tracking-widest">Major Hubs</div>
               </div>
             </div>
           </motion.div>
